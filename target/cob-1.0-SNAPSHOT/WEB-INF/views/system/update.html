@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../system/css/jedate.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/all.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/iconfont.css" />
+		<script src="../system/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../system/js/jquery.jedate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../system/js/jquery-form.js" type="text/javascript" charset="utf-8"></script>
+		<!--弹窗移动-->
+		<script src="../system/js/drag.js" type="text/javascript" charset="utf-8"></script>
+		<!--编辑器-->
+		<script type="text/javascript" charset="utf-8" src="../system/js/UMeditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/UMeditor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/UMeditor/lang/zh-cn/zh-cn.js"></script>
+		<!--上传-->
+		<script src="../system/js/plupload.full.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../system/js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../system/js/ImageAutoResize.js" type="text/javascript" charset="utf-8"></script>
+		<!--layer-->
+		<script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
+
+		<style type="text/css">
+			.adddtimgli>div img,
+			#addimgdiv img{
+				max-width: 100%;
+				max-height: 100%;
+				min-width: auto;
+				min-height: auto;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+		<section class="dyjss">
+			<div style="width: 100%;height: 100%;" id="courtbcdoc_cont">
+				<section class="dyjss">
+					<div class="courtbcdoc-cont">
+						<article class="top fs18">
+							<a href="#" class="mgr5 colft00 ahover">公众参与应用管理</a>
+							<span class="icon icon-you2 fs16"></span>
+							<a href="#" class="mgr5 colft00 ahover">公众参与应用管理</a>
+							<span class="icon icon-you2 fs16"></span>
+							<a class="mgr5 colft00">新增</a>
+						</article>
+						<!--修改或查看、新增-->
+						<!--表格-->
+						<form action=../${(result.model)!""}/update${(result.model)!""} method="post" id="updateReportForm" enctype="multipart/form-data">
+							<input type="hidden" name="id" value="${(result.Object.id)!''}">
+							<input type="hidden" name="coverPic" value="${(result.Object.coverPic)!''}">
+							<table border="" class="adddoc-table mgt30">
+								<tr class="adddoc-tr">
+									<td class="textalignr pgt5 pgb5" style="width:8%">标题：</td>
+									<td style="width:92%" class="pgt5 pgb5">
+										<div class="dyjs pgl10 pgr10">
+											<input type="text" id="title" name="title" style="width: 35%;" required="required"  value="${(result.Object.title)!''}" />
+										</div>
+									</td>
+								</tr>
+								<tr class="adddoc-tr">
+									<td class="textalignr pgt5 pgb5">封面：</td>
+									<td class="pgt5 pgb5">
+										<div class="dyjs pgl10 pgr10 addimg">
+											<div class="dyjs">
+												<label for="singlegraph">点击上传封面</label>
+												<input type="file" name="cover_pic" id="singlegraph" value="" />
+											</div>
+											<div id="addimgdiv" class="dyjc">
+												<#if (result.Object.coverPic)??&&(result.Object.coverPic)!=''>
+												<img src="${result.Object.coverPic}">
+													<#else/>
+													暂无照片
+												</#if>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="adddoc-tr">
+									<td class="textalignr pgt5 pgb5">多图上传：</td>
+									<td class="pgb10">
+										<ul id="file-list">
+											<#if (result.listCobPic)??>
+												<#list result.listCobPic as CobPic>
+													<li class="fl adddtimgli col-lg-7 col-min-6 col-small-5" id="${CobPic.id}">
+														<div id="demotu" class="dyjc"><img src="${CobPic.mixUrl}"/></div>
+														<span class="curp ahover" id="span1" onclick="spanOnclick('${CobPic.id}')">删除</span>
+													</li>
+												</#list>
+											</#if>
+										</ul>
+										<div class="fl adddtimgli col-lg-7 col-min-6 col-small-5">
+											<div class="dyjc addimginp">
+												<input type="file" name="browse" id="browse" value="" />
+												<label for="browse"><img src="../system/img/jia.png"/></label>
+											</div>
+										</div>
+										<div class="clearb"></div>
+									</td>
+								</tr>
+							</table>
+							<article class="adddoc-editortop mgt30">
+								<span>文章内容：</span>
+							</article>
+							<article class="adddoc-editorcontent">
+									<script id="editor" name="content" type="text/plain" style="width: 1000px;height: 300px;">${(result.content)!""}</script>
+							</article>
+							<article class="adddoc-editorbt">
+								<input type="submit" name="" id="start_upload" class="bce6 colftff" value="保存" />
+								<input type="reset" name="" id="" class="bc3c colftff mgl80" value="清空" />
+							</article>
+						</form>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<script src="../system/js/upload.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../system/js/ajaxCustom.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var w = $(".adddtimgli").eq(0).width();
+				var scale = 4 / 3;
+				var h = w / scale;
+				$(".adddtimgli>div").css("height", h);
+
+			});
+
+		</script>
+
+		<script type="text/javascript">
+			$(function(){
+
+				//富文本编辑器
+				UE.getEditor('editor');
+				UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+				UE.Editor.prototype.getActionUrl = function(action){
+					if(action == '/system/images'){
+						return action;
+					}else{
+						return this._bkGetActionUrl.call(this, action);
+					}
+				}
+			});
+
+			/*UE.getEditor('editor').addListener("ready", function () {
+				// editor准备好之后才可以使用
+				postAjax("../${result.model!''}/getContent",data,function(data){
+					if(data!=null){
+						UE.getEditor('editor').setContent(data);
+					}
+				});
+			});*/
+
+			$(document).ready(function() {
+				$("#updateReportForm").ajaxForm(function(result){
+					if(isNull(result.id)){
+						alert("post error." +result.error);
+						return false;
+					}else{
+						var data={
+							objId:result.id,
+						}
+						alert("post success." +result.id);
+						//多图上传
+						if(!isEmpty(multileuploader.files)&&!isNull('${(result.model)!""}')){
+							multileuploader.setOption('multipart_params',data);
+							multileuploader.setOption('url','/CobPic/addMore_pic');
+							multileuploader.start();
+						}
+						//单图上传
+						if(!isEmpty(singleuploader.files)&&!isNull('${result.model!""}')){
+							singleuploader.setOption('multipart_params',data);
+							singleuploader.setOption('url','/${(result.model)!""}/addCover_pic');
+							singleuploader.start();
+						}
+					}
+					//关闭当前弹出框
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index);
+				});
+			});
+			/*document.getElementById('start_upload').onclick = function() {
+			 //id='${result.url!""}';
+			 //multileuploader.multipart_params={objId:id};
+			 singleuploader.start();
+			 //multileuploader.start();
+			 //调用实例对象的start()方法开始上传文件，当然你也可以在其他地方调用该方法
+			 }*/
+		</script>
+
+		<script type="text/javascript">
+			function spanOnclick(id){
+				var result=confirm("该图片存储在服务器中，确定要删除吗！");
+				if(result){
+					/*$.ajax({
+						url:"/CobPic/deletePicById",
+						type:'post',
+						cache:false,
+						async:false,
+						dataType:'json',
+						data:{
+							id:id,
+						},
+						success:function(data){
+							if(data!=null){
+								alert(data.picResult);
+							}
+						}
+					});*/
+					$('#'+id).hide();
+				}
+			}
+		</script>
+	</body>
+
+</html>

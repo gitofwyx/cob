@@ -1,0 +1,10 @@
+<#if (result.listObject)??>
+    <#list result.listObject as notice>
+        <li>
+            <a href="/getObject?model=${result.model!''}&id=${notice.id}" target="_blank" class="ahover overell">${notice.title}</a>
+            <span class="date">(${notice.pubDate?substring(5,10)})</span>
+        </li>
+    </#list>
+</#if>
+
+<!--党员工作汇报-->

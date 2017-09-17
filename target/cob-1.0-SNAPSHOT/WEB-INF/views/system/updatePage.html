@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+    <title>Title</title>
+
+</head>
+<body>
+<form action="/activity/addActivity" method="post" enctype="multipart/form-data">
+    标题:<input type="text" required="required" name="title"><br>
+    封面:<input type="file" required="required" name="cover_pic"><br>
+    多图:<input type="file" required="required" name="more_pic" multiple><br>
+    内容：<br>
+    备注:<input type="text" required="required" name="remark"><br>
+
+    <input type="submit" value="提交">
+
+    <#if result.msg??>
+        ${result.msg!""}
+    </#if>
+</form>
+
+</body>
+</html>

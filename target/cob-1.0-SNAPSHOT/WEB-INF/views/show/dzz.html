@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<!--时间样式-->
+		<link rel="stylesheet" type="text/css" href="css/jedate.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--轮播滚动-->
+		<script src="js/jquery.SuperSlide.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<!--时间-->
+		<script src="js/jquery.jedate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function Printpart(id_str) {
+				var el = document.getElementById(id_str);
+				var iframe = document.createElement('IFRAME');
+				var doc = null;
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				document.body.appendChild(iframe);
+				doc = iframe.contentWindow.document;
+				doc.write('<div>' + el.innerHTML + '</div>');
+				doc.close();
+				iframe.contentWindow.focus();
+				iframe.contentWindow.print();
+				if(navigator.userAgent.indexOf("MSIE") > 0) {
+					document.body.removeChild(iframe);
+				}
+			}
+			window.onload = function() {
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="courthome">
+			<nav>
+				<!--背景图片-->
+				<div class="homeattention"></div>
+				<!--首页列表-->
+				<div class="homelist">
+					<ul class="homelist-ul dyjc">
+						<li>
+							<span class="icon icon-shouye mgr5"></span>
+							<a href="index.html" target="_blank" class="">首页</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="colft3C">通知公告</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党建工作动态</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党建地图</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党组织</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党员发展</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">民意调研</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">专题活动</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!--内容块-->
+			<section class="bcee pgb15 pgt15">
+				<!--标题列表-->
+				<div class="agencyset-title">
+					所在位置：
+					<a href="#" class="colft00 ahover mgr5">通知公告</a>
+					<span class="icon icon-you1 fs16"></span>
+					<span class="mgl5">内容</span>
+				</div>
+				<!--内容-->
+				<div class="detail-content mgt15">
+					<p class="title">中国共产党组织结构</p>
+					<article class="middle mgt20 pgb5">
+						<span class="fl">来源：<span>新华网</span></span>
+						<span class="fl mgl30">发布时间：<span>2017-02-06</span></span>
+						<a href="javascript:window.close();" class="fr mgl30 mgr10 dyjc colft00">关闭</a>
+						<a href="javascript:Printpart('printtext');" class="fr mgl30 dyjc colft00"><span class="icon icon-dayin1 fs18 colftd4 mgr10"></span>打印本页</a>
+						<span class="fr dyjc">字号：<button class="fs16 mgr5 detailbt">[大]</button><button class="fs16 mgr5 detailbt">[中]</button><button class="fs16 mgr5 detailbt">[小]</button></span>
+						<div style="clear: both;"></div>
+					</article>
+					<article class="pgt10 pgb10 pgl10 pgr10" id="printtext"><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">党的最高领导机关，是党的全国代表大会和它所产生的中央委员会。党的地方各级领导机关，是党的地方各级代表大会和它们所产生的委员会。党的各级委员会向同级的代表大会负责并报告工作。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　党的全国代表大会每五年举行一次，由中央委员会召集。中央委员会认为有必要，或者有三分之一以上的省一级组织提出要求，全国代表大会可以提前举行；如无非常情况，不得延期举行。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　全国代表大会代表的名额和选举办法，由中央委员会决定。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　党的中央委员会每届任期五年。全国代表大会如提前或延期举行，它的任期相应地改变。中央委员会委员和候补委员必须有五年以上的党龄。中央委员会委员和候补委员的名额，由全国代表大会决定。中央委员会委员出缺，由中央委员会候补委员按照得票多少依次递补。</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　中央委员会全体会议由中央政治局召集，每年至少举行一次。</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　在全国代表大会闭会期间，中央委员会执行全国代表大会的决议，领导党的全部工作，对外代表中国共产党。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　党的中央政治局、中央政治局常务委员会和中央委员会总书记，由中央委员会全体会议选举。中央委员会总书记必须从中央政治局常务委员会委员中产生。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　中央政治局和它的常务委员会在中央委员会全体会议闭会期间，行使中央委员会的职权。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　中央书记处是中央政治局和它的常务委员会的办事机构；成员由中央政治局常务委员会提名，中央委员会全体会议通过。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　中央委员会总书记负责召集中央政治局会议和中央政治局常务委员会会议，并主持中央书记处的工作。&nbsp;</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　党的中央军事委员会组成人员由中央委员会决定。</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　　每届中央委员会产生的中央领导机构和中央领导人，在下届全国代表大会开会期间，继续主持党的经常工作，直到下届中央委员会产生新的中央领导机构和中央领导人为止。</p><p style="line-height: 25px; color: rgb(51, 51, 51); font-family: 宋体; font-size: 14px; white-space: normal; widows: 1; background-color: rgb(255, 255, 255);">　&nbsp; 中共中央纪律检查委员会是中国共产党最高纪律检查机关。在中央委员会领导下进行工作。每届任期五年。主要任务是：维护党的章程和其他党内法规，协助党的委员会加强党风建设，检查党的路线方针政策和决议的执行情况；对党员进行遵守纪律的教育，作出关于维护党纪的决定；检查和处理党的组织和党员违反党章和其他党内法规的比较重要或复杂的案件，决定或取消对这些案件中党员的处分；受理党员的控告和申诉等。根据工作需要，它可向中央一级党和国家机关派驻党的纪律检查组或纪律检查员。</p><p><br/></p></article>
+					<article class="edit">责任编辑：<span></span></article>
+				</div>
+			</section>
+			<!--底部-->
+			<footer class="homefoot">
+				<ul>
+					<li class="dyjc homefoot-li1">
+						<a href="#">人民网</a>
+						<a>新华网</a>
+						<a>中国政府网</a>
+						<a>党建研究</a>
+						<a>光明网</a>
+						<a>中国共产党新闻网</a>
+						<a>中国党建网</a>
+						<a>中国组织人事报新闻网</a>
+					</li>
+					<li class="homefoot-li2 dyjc mgt20">
+						<a class="ahover" href="#">求是理论网</a>
+						<a class="ahover" href="#">半月谈网</a>
+						<a class="ahover" href="#">中宣部党建网</a>
+						<a class="ahover" href="#">海南省人民政府</a>
+						<a class="ahover" href="#">海南日报</a>
+						<a class="ahover" href="#">南海网</a>
+					</li>
+					<li class="homefoot-li3 dyjc mgt20">
+						<span>互联网新闻信息服务许可证（1012012002） 信息网络传播视听节目许可证（0112649）</span>
+						<span>广告经营许可证：京西工商广字第0455号</span>
+					</li>
+					<li class="homefoot-li3 mgt20">版权所有 Copyright@ 2003-2015 党建网 京ICP证060106号</li>
+					<li class="homefoot-li3 mgt20">技术支持：中国文明网</li>
+					<li class="mgt20 dyjc"><img src="img/dzjg.png" /></li>
+				</ul>
+			</footer>
+		</div>
+	</body>
+
+</html>

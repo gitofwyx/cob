@@ -1,0 +1,32 @@
+<ul>
+    <input type="hidden" id="page_size" value="${(result.size)!''}"/>
+    <input type="hidden" id="pageNow" value="${(result.pageNow)!''}"/>
+    <input type="hidden" id="model_control" value="${(result.model)!''}">
+    <#if (result.listObject)??>
+        <input type="hidden" id="" value="2"/>
+        <#list result.listObject as Object>
+            <li class="dyjb fs16 mgt10 pgb10 listli">
+                <div class="colft3C icon icon-fangkuai fs14 div1"></div>
+                <a href="/getObject?model=${result.model!''}&id=${Object.id}" class="dyb colft00 ahover overell">${Object.title}</a>
+                <div class="div2">(${Object.createDate?substring(0,10)})</div>
+            </li>
+        </#list>
+    </#if>
+</ul>
+<!--分页-->
+
+    <div class="list-paging dyje mgt50">
+        <button id="last_page" class="bt">上一页</button>
+        <div class="div3 dyjc">
+            <a id="page_1" class="listahover curp">1</a>
+            <a id="page_2" class="listahover curp">2</a>
+            <a id="page_3" class="listahover curp">3</a>
+            <a id="page_4" class="listahover curp">4</a>
+            <a id="page_5" class="listahover curp">5</a>
+        </div>
+        <button id="next_page" class="bt">下一页</button>
+        <button id="end_page" class="bt mgl10">尾&nbsp;&nbsp;页</button>
+        <div class="dyjs mgl10 fs18">转到&nbsp;&nbsp;第
+            <input type="text" name="page_input" id="page_input" class="mgl5 mgr5 inp fs16" value="1" />页
+            <button id="skip_page" class="bt mgl10">跳&nbsp;&nbsp;转</button></div>
+    </div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.roles.dao.RolesDao">
+      <sql id="columns">id,roleVal,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+       
+      <insert id="addUserRole" parameterType="com.kelan.cob.roles.entity.Roles">
+           insert into cob_roles(<include refid="columns"></include>) values(
+           #{id},#{roleVal},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+      </insert>
+      <!-- 获取 -->
+      <select id="getUserRoles" parameterType="string" resultType="string">
+           select roleVal
+           from cob_roles
+           where deleteFlag='0';
+      </select>
+      
+      <select id="getUserRoleId" parameterType="string" resultType="string">
+           select id
+           from cob_roles
+           where roleVal=#{roleVal} and deleteFlag='0';
+      </select>
+</mapper>

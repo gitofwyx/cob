@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.pic.dao.CobPicDao">
+    <sql id="columns">id,objId,url,mixUrl,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <!--添加图片信息 -->
+    <insert id="addCobPic" parameterType="com.kelan.cob.pic.entity.CobPic">
+        insert into cob_pic(<include refid="columns"></include>) values(
+        #{id},#{objId},#{url},#{mixUrl},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
+    <!--根据id获取图片信息 -->
+    <select id="getCobPic" parameterType="string" resultType="com.kelan.cob.pic.entity.CobPic">
+        select
+        <include refid="columns"></include>
+        from cob_pic
+        where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <!--获取根据objId获取图片列表 -->
+    <select id="listCobPic" parameterType="string" resultType="com.kelan.cob.pic.entity.CobPic">
+        select
+        <include refid="columns"></include>
+        from cob_pic where deleteFlag='0' and objId=#{2} ORDER BY createDate  desc limit #{0},#{1};
+    </select>
+
+    <!--获取根据objId获取图片列表 -->
+    <select id="listCobPicId" parameterType="string" resultType="string">
+        select id
+        from cob_pic where deleteFlag='0' and objId=#{2} ORDER BY createDate  desc limit #{0},#{1};
+    </select>
+
+    <!--获取根据objId获取图片列表 -->
+    <select id="getPicCount" parameterType="string" resultType="int">
+        select count(id)
+        from cob_pic where deleteFlag='0' and objId=#{objId};
+    </select>
+
+    <!--修改更改图片信息 -->
+    <update id="updateCobPic" parameterType="com.kelan.cob.pic.entity.CobPic">
+        update cob_pic set title=#{title},coverPic=#{coverPic},content=#{content},
+        remark=#{remark},updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--批量删除 -->
+    <delete id="deleteCobPic" parameterType="java.util.List">
+        DELETE FROM cob_pic WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--单次删除 -->
+    <delete id="deletePicById" parameterType="java.util.List">
+        DELETE FROM cob_pic WHERE id=#{id};
+    </delete>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.user.dao.CobUserDao">
+    <sql id="columns">id,account,password,name,gender,phone,roleId,picUrl,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <!--根据id获取用户信息 -->
+    <select id="getUserById" parameterType="string" resultType="com.kelan.cob.user.entity.CobUser">
+        select
+        <include refid="columns"></include>
+        from riding_user
+        where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <!--根据账号密码检验登录 -->
+    <select id="login" parameterType="string" resultType="string">
+        select account
+        from cob_user
+        where account=#{0} and password=#{1} and deleteFlag='0';
+    </select>
+
+    <!--检验用户名是否存在（根据用户名获取用户名） -->
+    <select id="getUserAccount" parameterType="string" resultType="string">
+        select account
+        from cob_user
+        where account=#{account} and deleteFlag='0';
+    </select>
+
+    <!--根据账号获取角色信息 -->
+    <select id="getRoleByAccount" parameterType="string" resultType="string">
+        select t2.roleVal
+        from cob_user t1 INNER JOIN cob_roles t2 on t1.roleId = t2.id
+        where t1.deleteFlag='0' and t2.deleteFlag='0' and account=#{account};
+    </select>
+
+    <!--检验用户名是否存在（根据用户名获取用户名） -->
+    <select id="getUserByAccount" parameterType="string" resultType="com.kelan.cob.user.entity.CobUser">
+        select <include refid="columns"></include>
+        from cob_user
+        where account=#{account} and deleteFlag='0';
+    </select>
+
+    <!--添加用户信息 -->
+    <insert id="addUser" parameterType="com.kelan.cob.user.entity.CobUser">
+        insert into cob_user(<include refid="columns"></include>) values(
+        #{id},#{account},#{password},#{name},#{gender},#{phone},#{roleId},#{picUrl},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
+</mapper>

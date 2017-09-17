@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.work.dao.WorkDao">
+    <sql id="columns">id,title,coverPic,content,remark,pubDate,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <!--添加活动信息 -->
+    <insert id="addWork" parameterType="com.kelan.cob.work.entity.Work">
+        insert into cob_work(<include refid="columns"></include>) values(
+        #{id},#{title},#{coverPic},#{content},#{remark},#{pubDate},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
+    <!--根据id获取活动信息 -->
+    <select id="getWork" parameterType="string" resultType="com.kelan.cob.work.entity.Work">
+        select
+        <include refid="columns"></include>
+        from cob_work
+        where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <!--获取活动分页 -->
+    <select id="listWork" parameterType="string" resultType="com.kelan.cob.work.entity.Work">
+        select
+        <include refid="columns"></include>
+        from cob_work where deleteFlag='0' ORDER BY createDate  desc limit #{0},#{1};
+    </select>
+
+    <!--修改活动信息 -->
+    <update id="updateWork" parameterType="com.kelan.cob.work.entity.Work">
+        update cob_work set title=#{title},coverPic=#{coverPic},content=#{content},
+        remark=#{remark},updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--批量修改（批量逻辑删除） -->
+    <!--以下的批量方法只能删除数据表的一样数据-->
+    <update id="deleteListWork" parameterType="java.util.List" >
+        UPDATE cob_work SET deleteFlag ='1' WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量删除 -->
+    <delete id="deleteWork" parameterType="java.util.List">
+        DELETE FROM cob_work WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

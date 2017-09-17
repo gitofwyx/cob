@@ -1,0 +1,38 @@
+
+<ul class="homelist-ul dyjc">
+    <li>
+        <span class="icon icon-shouye mgr5"></span>
+        <a href="/" class="catalog_index" id="index" >首页</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="notice" >通知公告</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="work" >党建工作动态</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="cobMap" >党建地图</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="organize" >党组织</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="develop">党员发展</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="survey" >书记办公室</a>
+    </li>
+    <li>
+        <a href="#" class="catalog" id="activity" >帮扶关怀</a>
+    </li>
+</ul>
+
+<script>
+    $(".homelist-ul>li").mousemove(function(){
+        $(this).find(".hoverul").css("display","block");
+    });
+    $(".homelist-ul>li").mouseout(function(){
+        $(this).find(".hoverul").css("display","none");
+    });
+
+</script>

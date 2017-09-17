@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="/css/indexnew.css" />
+		<script src="/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/jquery.SuperSlide.2.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!--头部-->
+		<header class="new_header">
+
+		</header>
+		<!--列表-->
+		<nav class="new_nav">
+			<ul>
+				<li>
+					<a href="#" target="_blank">首页</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">入党指南</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">党员学习</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">民主生活会</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">党组织精神</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">党员工作汇报</a>
+				</li>
+			</ul>
+		</nav>
+		<!--内容块-->
+		<section class="list_section">
+			<!--列表-->
+			<ul class="party_toplist mgt30">
+				<li>当前位置：</li>
+				<li>首页</li>
+				<li>></li>
+				<li>入党指南</li>
+				<li>></li>
+				<li>详情内容</li>
+			</ul>
+			<div style="clear: both;"></div>
+			<!--内容-->
+			<ul class="party_detail mgt30">
+				<!--标题-->
+				<li class="name">${(result.Object.title)!''}</li>
+				<!--日期-->
+				<li class="date mgt10">
+					<span class="mgr10">${(result.Object.pubDate)!''}</span>
+					<span>15:22:25</span>
+				</li>
+				<!--内容-->
+				<li class="cnt mgt10">${(result.content)!''}</li>
+			</ul>
+		</section>
+		<!--底部-->
+		<footer class="party_foot">
+
+		</footer>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			<!--头部-->
+			$('.new_header').load('/main_header');
+			<!--底部-->
+			$('.party_foot').load('/main_footer');
+		});
+
+	</script>
+
+</html>

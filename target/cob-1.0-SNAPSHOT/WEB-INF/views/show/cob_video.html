@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+
+		<link href="css/video-js.css" rel="stylesheet" type="text/css"/>
+		<script src="js/video.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<!--时间样式-->
+		<link rel="stylesheet" type="text/css" href="css/jedate.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--轮播滚动-->
+		<script src="js/jquery.SuperSlide.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<!--时间-->
+		<script src="js/jquery.jedate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function Printpart(id_str) {
+				var el = document.getElementById(id_str);
+				var iframe = document.createElement('IFRAME');
+				var doc = null;
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				document.body.appendChild(iframe);
+				doc = iframe.contentWindow.document;
+				doc.write('<div>' + el.innerHTML + '</div>');
+				doc.close();
+				iframe.contentWindow.focus();
+				iframe.contentWindow.print();
+				if(navigator.userAgent.indexOf("MSIE") > 0) {
+					document.body.removeChild(iframe);
+				}
+			}
+			window.onload = function() {
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="courthome">
+			<nav>
+				<!--背景图片-->
+				<div class="homeattention"></div>
+				<!--首页列表-->
+				<div class="homelist">
+					<ul class="homelist-ul dyjc">
+						<li>
+							<span class="icon icon-shouye mgr5"></span>
+							<a href="index.html" target="_blank" class="">首页</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="colft3C">通知公告</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党建工作动态</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党建地图</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党组织</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">党员发展</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">民意调研</a>
+						</li>
+						<li>
+							<a href="#" target="_blank" class="">专题活动</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!--内容块-->
+			<section class="bcee pgb15 pgt15">
+				<!--标题列表-->
+				<div class="agencyset-title">
+					所在位置：
+					<a href="#" class="colft00 ahover mgr5">通知公告</a>
+					<span class="icon icon-you1 fs16"></span>
+					<span class="mgl5">内容</span>
+				</div>
+				<!--内容-->
+				<div class="detail-content mgt15">
+					<p class="title">黄玥：走好新的长征路，习近平为何强调必须全面从严治党习近平为何强调必须全面从严治党</p>
+					<article class="middle mgt20 pgb5">
+						<span class="fl">来源：<span>最高人民法院网</span></span>
+						<span class="fl mgl30">发布时间：<span>2017-02-06</span></span>
+						<a href="javascript:window.close();" class="fr mgl30 mgr10 dyjc colft00">关闭</a>
+						<a href="javascript:Printpart('printtext');" class="fr mgl30 dyjc colft00"><span class="icon icon-dayin1 fs18 colftd4 mgr10"></span>打印本页</a>
+						<span class="fr dyjc">字号：<button class="fs16 mgr5 detailbt">[大]</button><button class="fs16 mgr5 detailbt">[中]</button><button class="fs16 mgr5 detailbt">[小]</button></span>
+						<div style="clear: both;"></div>
+					</article>
+					<article class="pgt10 pgb10 pgl10 pgr10" style="width:100%;text-align: center" id="printtext">
+						<video id=”my_video_1″ class=”video-js vjs-default-skin” controls preload=”auto” width=”640″ height=”264″ poster=”my_video_poster.png” data-setup=”{}”>
+							<source src="http://223.111.11.138/youku/677735F0D5F308158C397F3A17/03002001005505417B83C10069FC16A736DF49-173D-A597-ED21-B24D128E7E83.mp4?sid=049140683450120548a88_00&sign=57a1aaaaff06672f191d1c5f8bf2178d&ctype=20" type='video/mp4'>
+						</video>
+					</article>
+					<article class="edit">责任编辑：<span></span></article>
+				</div>
+			</section>
+			<!--底部-->
+					<li class="dyjc homefoot-li1">
+						<a href="#">人民网</a>
+						<a>新华网</a>
+						<a>中国政府网</a>
+						<a>党建研究</a>
+						<a>光明网</a>
+						<a>中国共产党新闻网</a>
+						<a>中国党建网</a>
+						<a>中国组织人事报新闻网</a>
+					</li>
+					<li class="homefoot-li2 dyjc mgt20">
+						<a class="ahover" href="#">求是理论网</a>
+						<a class="ahover" href="#">半月谈网</a>
+						<a class="ahover" href="#">中宣部党建网</a>
+						<a class="ahover" href="#">海南省人民政府</a>
+						<a class="ahover" href="#">海南日报</a>
+						<a class="ahover" href="#">南海网</a>
+					</li>
+					<li class="homefoot-li3 dyjc mgt20">
+						<span>互联网新闻信息服务许可证（1012012002） 信息网络传播视听节目许可证（0112649）</span>
+						<span>广告经营许可证：京西工商广字第0455号</span>
+					</li>
+					<li class="homefoot-li3 mgt20">版权所有 Copyright@ 2003-2015 党建网 京ICP证060106号</li>
+					<li class="homefoot-li3 mgt20">技术支持：中国文明网</li>
+					<li class="mgt20 dyjc"><img src="img/dzjg.png" /></li>
+				</ul>
+			</footer>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		videojs.options.flash.swf = "video-js.swf";
+	</script>
+
+</html>

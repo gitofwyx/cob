@@ -1,0 +1,14 @@
+<input type="hidden" id="page_size" value="${(result.size)!''}"/>
+<input type="hidden" id="pageNow" value="${(result.pageNow)!''}"/>
+<input type="hidden" id="model_control" value="${(result.model)!''}">
+<#if (result.listObject)??>
+    <#list result.listObject as Object>
+        <li>
+            <div class="div1">
+                <img src="img/redzfx.png"/>
+                <a href="/getObject?model=${result.model!''}&id=${Object.id}" target="_blank" class="mgl10">${(Object.title)}</a>
+            </div>
+            <div class="div2">(${Object.createDate?substring(0,10)})</div>
+        </li>
+    </#list>
+</#if>

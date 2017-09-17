@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.jedate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-form.js" type="text/javascript" charset="utf-8"></script>
+		<!--上传-->
+		<script src="/system/js/plupload.full.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
+
+		<link title="style1" rel="stylesheet" href="../css/style.css" type="text/css" />
+
+	</head>
+
+	<body>
+
+		<div class="form_content">
+			<form id="saveReportForm" action="" method="post" enctype="multipart/form-data">
+				<fieldset>
+					<legend>基本信息</legend>
+					<div style="width: 50%;float: left;padding-right: 20px;">
+						<div class="form-row fl">
+							<div class="fieldtop-label fl"><label for="field7">姓名:</label></div>
+							<div class="field-widget fl"><input name="name" id="name" class="requiredtop" value="${(result.Object.name)!''}"/></div>
+						</div>
+						<div class="form-row fl">
+							<div class="fieldtop-label fl"><label for="field7">民族:</label></div>
+							<div class="field-widget fl"><input name="nation" id="nation" class="requiredtop" value="${(result.Object.nation)!''}" /></div>
+						</div>
+						<div class="form-row fl">
+							<div class="fieldtop-label fl"><label for="field7">年龄:</label></div>
+							<div class="field-widget fl"><input type="number" name="age" id="age" class="requiredtop" value="${(result.Object.age)!''}" /></div>
+						</div>
+						<div class="form-row fl">
+							<div class="fieldtop-label fl"><label for="field7">学历:</label></div>
+							<div class="field-widget fl"><input name="education" id="education" class="requiredtop" value="${(result.Object.education)!''}"/></div>
+						</div>
+					</div>
+
+					<div style="width: 50%;float: right;padding-left: 20px;">
+						<div class="form-row">
+							<div class="fieldtop-label field-padding"><label for="field7">性别:</label></div>
+							<div class="field-widget layui-input-block">
+								<div>
+									<input type="radio" name="sex" id="man" value="1"/>男&nbsp&nbsp
+									<input type="radio" name="sex" id="woman"  value="2"/>女
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div>
+								<div class="field-widget-20percent fl"><label for="field7">照片:</label></div>
+								<div class="field-widget-80percent fl"><label for="singlegraph">点击上传</label></div>
+							</div>
+							<div class="field-widget">
+								<div class="addimg">
+									<input type="file" name="coverPic" id="singlegraph" class="requiredimg" />
+								</div>
+							</div>
+							<div class="field-widget">
+								<div class="putimg">
+									<#if (result.Object.coverPic)??>
+										<img src="${result.Object.coverPic}" />
+									</#if>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="cb"></div>
+					<div class="form-row address-row">
+						<div class="fieldtop-label fl"><label for="field7">住址:</label></div>
+						<div class="field-widget fl"><input name="address" id="address" class="requiredtop" style="width: 400px;" value="${(result.Object.address)!''}"/></div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>详细信息</legend>
+					<div class="form-row fl">
+						<div class="field-label"><label>所属支部:</label></div>
+						<div class="field-widget"><input name="belong" id="member_belong" class="required" value="${(result.Object.belong)!''}"/></div>
+					</div>
+					<div class="form-row fl">
+						<div class="field-label"><label>职务:</label></div>
+						<div class="field-widget"><input name="duties" id="member_duties" class="required" value="${(result.Object.duties)!''}"/></div>
+					</div>
+					<div class="form-row fl">
+						<div class="field-label"><label>党员性质:</label></div>
+						<div class="field-widget">
+							<select id="member_property" name="property" class="validate-selection">
+								<option>下拉选择...</option>
+								<option>正式党员</option>
+								<option>预备党员</option>
+								<option>流动党员</option>
+								<option>入党积极分子</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row fl">
+						<div class="field-label"><label for="field7">入党时间</label>:</div>
+						<div class="field-widget"><input type="date" name="attendDate" id="field7" class="required" value="${result.Object.attendDate}"/></div>
+					</div>
+					<div class="form-row fl">
+						<div class="field-label"><label for="field7">联系电话:</label></div>
+						<div class="field-widget"><input name="contactNumber" id="contactNumber" class="required" value="${result.Object.contactNumber}"/></div>
+					</div>
+				</fieldset>
+				<div class="allbt">
+					<input class="reset" type="button" value="Reset" onclick="valid.reset(); return false" />
+				    <input type="submit" class="submit" value="提交" /> 
+				</div>
+			</form>
+		</div>
+
+		<script src="/system/js/upload.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				singleuploader.bind('FilesAdded',function(uploader, files) {
+					for(var i = 0, len = files.length; i < len; i++) {
+						! function(i) {
+							previewImage(files[i], function(imgsrc) {
+								$('.putimg').html('<img src="' + imgsrc + '" />');
+								if(files.length > 1) {
+									$(".putimg img").eq(0).remove();
+									uploader.splice(0, 1);
+								}
+							})
+						}(i);
+					}
+				});
+
+				$("#saveReportForm").ajaxForm(function(result) {
+					var data={
+						objId:result.id,
+					};
+					if(!isEmpty(singleuploader.files)){
+						singleuploader.setOption('multipart_params',data);
+						singleuploader.setOption('url','/Member/addCover_pic');
+						singleuploader.start();
+					}
+					//刷新父页面
+					//window.parent.location.reload();
+					//关闭当前弹出框
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index);
+				})
+			})
+
+		</script>
+
+	</body>
+
+</html>

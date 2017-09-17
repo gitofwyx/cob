@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <form action="/cob/login" method="post">
+
+          <ul>
+              <#list ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"] as x>
+                  <li>
+                      <span ></span>
+                      <a href="#">${x}</a>
+                  </li>
+              </#list>
+
+          </ul>
+          ${key}
+                登录测试<br>
+          用户名：<input type="text"id="userName" name="userName"/><br>
+          密码：<input type="password"id="passWord" name="passWord"/><br>
+
+          <input type="submit" value="提交">
+            
+      </form>
+</body>
+</html>

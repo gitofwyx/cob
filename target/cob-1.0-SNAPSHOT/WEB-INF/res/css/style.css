@@ -1,0 +1,165 @@
+body {
+	color: #333;
+	background: url(../img/bg.gif) repeat;
+	padding: 0px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.cb{
+	clear: both;
+}
+
+.form-row {
+	margin: 10px;
+}
+
+
+.field-label {
+	width: 150px;
+	font-size: 16px;
+	float: left;
+	line-height: 30px;
+}
+
+.field-widget {
+	position: relative;
+	height: 30px;
+}
+
+.field-padding {
+	padding: 5px 5px 5px 0;
+}
+
+.field-widget-20percent{
+	font-size: 16px;
+	line-height: 30px;
+	width: 20%;
+}
+
+.field-widget-80percent{
+	font-size: 5px;
+	line-height: 30px;
+	width: 80%;
+}
+
+select.validate-selection,
+input.required {
+	width: 300px;
+	height: 30px;
+	border: 1px solid #95E0EF;
+	background-color: #f3fcfe;
+	border-left-width: 2px;
+	padding: 0 5px;
+	font-size: 14px;
+	float: left;
+}
+select.validate-selection option{
+	font-size: 14px;
+}
+/**/
+.fieldtop-label{
+	width: 60px;
+	font-size: 16px;
+	line-height: 30px;
+}
+input.requiredtop {
+	width: 215px;
+	height: 30px;
+	border: 1px solid #95E0EF;
+	background-color: #f3fcfe;
+	border-left-width: 2px;
+	padding: 0 5px;
+	font-size: 14px;
+	float: left;
+}
+input.requiredimg{
+    width: 160px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	z-index: 1;
+}
+.addimg{
+	line-height: 30px;
+	font-size: 16px;
+	margin-right: 20px;
+}
+.putimg>img{
+	min-height: auto;
+	min-width: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+.putimg{
+	clear: both;
+	border: 1px solid #95E0EF;
+	width: 110px;
+	height: 110px;
+	line-height: 110px;
+	text-align: center;
+	background-color: #f3fcfe;
+	padding: 0 5px;
+	font-size: 16px;
+}
+.address-row{
+	margin-top: 20px;
+}
+
+
+.form_content {
+	width: 575px;
+	margin: 30px auto;
+	padding: 10px;
+	background: url(../img/form_top_bg.gif) repeat-x top #fff;
+}
+
+fieldset{
+	border: none;
+	border-top: 2px solid #95E0EF;
+	padding: 20px 10px;
+	width: 100%;
+	margin-bottom: 30px;
+}
+legend{
+	font-size: 20px;
+	background: #95E0EF;
+	color: #FFFFFF;
+	padding: 5px 10px;
+}
+/**/
+.allbt{
+	width: 100%;
+	text-align: center;
+}
+.allbt>input{
+	height: 40px;
+	width: 110px;
+	font-size: 16px;
+	color: #FFFFFF;
+	margin: 0 30px;
+	font-weight: bold;
+}
+.allbt>.reset{
+	border-radius: 5px;
+	border: none;
+	background: #C9C5C5;
+}
+.allbt>.submit{
+	border-radius: 5px;
+	border: none;
+	background: #95E0EF;
+}

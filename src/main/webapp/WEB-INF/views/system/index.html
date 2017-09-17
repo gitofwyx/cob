@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>智慧党建</title>
+		<link rel="stylesheet" type="text/css" href="/system/css/jedate.css"/>
+		<link rel="stylesheet" type="text/css" href="/system/css/all.css" />
+		<link rel="stylesheet" type="text/css" href="/system/css/iconfont.css" />
+		<script src="/system/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/system/js/jquery.jedate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/system/js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/layer.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<header>
+			<article class="courtbcdoc-top dyjb">
+				<div class="title mgl30">智慧党建内容管理</div>
+				<div class="dyjs">
+					<a title="个人中心" class="dyjs colft00 curp">
+						<span class="icon icon-yonghu fs30"></span>
+						<span class="mgl10 fs16">欢迎&nbsp;admin</span>
+					</a>
+					<a href="/logout" title="退出" class="mgl20 mgr30 icon icon-tuichu fs30 colft00"></a>
+				</div>
+			</article>
+			<ul class="courtbcdoc-bottom dyjs">
+				<!--党建工作动态-->
+				<li class="edit_menu" id="Work">
+					<a href="#" class="colftff">入党指南</a>
+				</li>
+
+				<li class="edit_menu" id="cob_map">
+					<a href="/CobMap/system" class="colftff">党建地图</a>
+				</li>
+
+				<li class="edit_menu" id="Organize">
+					<a href="#" class="colftff">党组织</a>
+				</li>
+				<!--通知公告-->
+				<li class="edit_menu" id="Notice">
+					<a href="#" class="colftff">党员汇报</a>
+				</li>
+				<li class="edit_menu" id="Develop">
+					<a href="#" class="colftff">党员学习</a>
+				</li>
+
+				<li class="edit_menu" id="Survey">
+					<a href="#" class="colftff">书记办公室</a>
+				</li>
+
+				<li class="edit_menu" id="Activity">
+					<a href="#" class="colftff">帮扶关怀</a>
+				</li>
+
+			</ul>
+		</header>
+		<aside class="courtbcdoc-aside aside3">
+
+		</aside>
+		<section class="wh dyjss">
+			<!--提示框-->
+			<div class="adddoc-tstk adddoc-tk dyn" id="adddoc_tstk">
+				<div class="top dyje">
+					<span class="fs12 curp" onclick="tkhide('#adddoc_tstk')">关闭</span>
+				</div>
+				<div class="cnt dyjc">
+					是否删除？
+				</div>
+				<div class="foot dyje">
+					<button type="button" class="tstkdetermine" >确定</button>
+					<button type="button" onclick="tkhide('#adddoc_tstk')">取消</button>
+				</div>
+			</div>
+			<div style="width: 100%;height: 100%;" id="courtbcdoc_cont">
+				<div class="prompt dyn"></div>
+				<section class="dyjss">
+					<div class="courtbcdoc-cont">
+						<article class="top fs18">
+							<a href="#" class="mgr5 colft00 ahover">党建后台管理</a>
+							<span class="icon icon-you2 fs16"></span>
+							<span class="mgr5"></span>
+						</article>
+						<form>
+							<fieldset id="" class="search mgl10 mgr10 mgt15">
+								<legend>搜索条件</legend>
+								<ul>
+									<li class="fl mgl20 mgt10 mgb10">
+										<label for="">关键词：</label>
+										<input type="text" name="" id="" value="" class="inp1" />
+									</li>
+									<li class="fl mgl20 mgt10 mgb10">
+										<label for="">发布人：</label>
+										<input type="text" name="" id="" value="" class="inp1" />
+									</li>
+									<li class="fl mgl20 mgt10 mgb10">
+										<label for="">发布时间：</label>
+										<input type="text" name="" id="updated_time" value="" class="inp1" />
+									</li>
+									<li class="fl mgl20 mgt10 mgb10">
+										<input type="button" name="" id="" value="搜索" class="submitbt" />
+									</li>
+								</ul>
+								<div style="clear: both;"></div>
+							</fieldset>
+						</form>
+						<!--按钮-->
+						<div class="button mgl10 mgr10 mgt5">
+							<button class="mgr5" id="add" onclick="">新增</button>
+							<button class="mgr5" id="delete" onclick="dflooktkshow('请选择查看项', '')">查看</button>
+							<button class="mgr5 deltable" onclick="">删除</button>
+						</div>
+						<!--表格-->
+						<table border="" id="object_table" class="courtbcdoc-conttable mgt10">
+
+						</table>
+						<!--分页-->
+						<div class="list-paging dyjs mgt20 mgl10">
+							<span class="fs18 mgr10">共10条数据</span>
+							<button id="last_page" class="bt">上一页</button>
+							<div id="current_page" class="div3 dyjc">1/10</div>
+							<button id="next_page" class="bt">下一页</button>
+							<button class="bt mgl10">尾&nbsp;&nbsp;页</button>
+							<div class="dyjs mgl10 fs18">
+								转到&nbsp第<input type="text" name="" id="page_num" class="mgl5 mgr5 inp fs16" value="1" />
+								页<button class="bt mgl10">跳&nbsp;&nbsp;转</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<script src="/js/ajaxCustom.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var updated = {
+					format: 'YYYY-MM-DD',
+					minDate: '1060-01-01', //设定最小日期
+					festival: false, //是否显示农历节日
+					ishmsVal: false, //是否限制时分秒输入框输入，默认可以直接输入时间
+					maxDate: $.nowDate(0) //最大日期
+				};
+				$('#updated_time').jeDate(updated);
+			});
+		</script>
+
+		<script type="text/javascript" >
+			var model=null;
+			var model_id='#';
+			$(document).ready(function(){
+				if('${result.error!""}'!=''){
+					alert('${result.error!""}');
+				}
+				if('${result.info!""}'=='添加成功'){
+					alert('${result.info!""}'+"\n上传封面 "+'${result.CoverPic!""}'+" 张"+"\n上传多图 "+'${result.picNum!""}'+" 张");
+				}
+
+				//侧边栏
+				var side_menu=function(){
+					var node=null;
+					$(".aside-list>li a").click(function() {
+						$(this).siblings().toggle();
+						$(this).addClass("asidelistacv");
+						$(this).parent().siblings().find("a").removeClass("asidelistacv");
+						var size = $(this).siblings().size();
+						if(size == 0) {
+							$(this).parent().siblings().find(".aside-listdrop>li").removeClass("asidelistacv");
+						}
+						node=$(this).attr('id');
+						side_menu_click(node);
+					});
+				}
+				//侧边栏点击事件
+				function side_menu_click(node){
+					postAjax("/system/menu_click",{node:node},function(data){
+						//$(data).find('.fgly_modify').bind("click",add_control);
+						$('#object_table').html(data);
+						model=$('#model_control').val();
+						$('#current_page').text('1/10');
+						$('.tstkdetermine').unbind('click').bind('click',function(){
+							delete_click(model);
+						});
+						add_control(node);
+						update_control(node);
+					});
+				}
+
+				//头部菜单栏
+				var head_menu=function(){
+					$(".edit_menu").bind("click",head_menu_click);
+				}
+				//头部菜单点击
+				var head_menu_click=function(){
+					model=$(this).attr('id');
+					if(isNull(model)){
+						model='Notice';
+					}
+					//侧边栏加载
+					$(".courtbcdoc-aside").load("/menu/list_menu?model="+model,side_menu);
+					table_load();
+				}
+				//头部菜单点击绑定
+				//$(".courtbcdoc-aside").load("/menu/List_menu?model="+model,side_menu);
+				//表单加载
+				var table_load=function(){
+					postAjax("../"+model+"/table"+model,{page:'1/10'},function(data){
+						if(data!=null){
+							$('#object_table').html(data);
+							$('#current_page').text('1/10');
+							$('.tstkdetermine').unbind('click').bind('click',function(){
+								delete_click(model);
+							});
+						}
+						//新增
+						add_control();
+						update_control();
+					});
+				}
+				head_menu();
+				//新增
+				function add_control(node){
+					$("#add").unbind('click').click(function(){
+						if(model=='Member'){
+							var area_wide='706px';
+							var area_high='650px';
+						} else{
+							var area_wide='1250px';
+							var area_high='650px';
+						}
+						layer.open({
+							type: 2,
+							//scrollbar: false,
+							title: '<span class="fs20">信息录入</span>',
+							area: [area_wide, area_high],
+							//shadeClose: true, //点击遮罩关闭
+							maxmin: true, //允许全屏最小化
+							content: '/system/add?model='+model,
+							/*success: function(data,status){
+							 alert('ok');
+
+							 }*/
+							end:function(){
+								if(isNull(node)){
+									$(model_id+model).trigger('click');
+								}else{
+									side_menu_click(node);
+								}
+							},
+						});
+					});
+				}
+
+				//修改
+				function update_control(node,id){
+					$(".fgly_modify").unbind('click').click(function(){
+						var id=$(this).parents("tr").attr("id");
+						if(model=='Member'){
+							var area_wide='706px';
+							var area_high='650px';
+						} else{
+							var area_wide='1250px';
+							var area_high='650px';
+						}
+						layer.open({
+							type: 2,
+							//scrollbar: false,
+							title: '<span class="fs20">信息录入</span>',
+							area: [area_wide, area_high],
+							//shadeClose: true, //点击遮罩关闭
+							maxmin: true, //允许全屏最小化
+							content: '/system/update?id='+id+'&model='+model,
+							/*success: function(data,status){
+							 alert('ok');
+							 }*/
+							end:function(){
+								if(isNull(node)){
+									$(model_id+model).trigger('click');
+								}else{
+									side_menu_click(node);
+								}
+							},
+						});
+					});
+				}
+
+				//当前为第一页时上一页按钮失效
+				if($('#current_page').text()=='1/10'){
+					$("#last_page").attr("disabled", true);
+				}
+
+				//上一页
+				$("#last_page").click(function(){
+					var page=$('#current_page').text();
+					if(!isNull(page)){
+						var ps=page.split('/');
+						if(ps[0]!='1'){
+							ps[0]=parseInt(ps[0])-1;
+						}
+						page=ps[0]+'/'+ps[1];
+					}
+					var pageNum={
+						page:page,
+					}
+					postAjax("../"+model+"/table"+model,pageNum,function(data){
+						if(data!=null){
+							$('#object_table').html(data);
+							$('#current_page').text(page);
+							update_control();
+							if(page=='1/10'){
+								$("#last_page").attr("disabled", true);
+								if(!isNull($('#null_content').text())){
+									$("#next_page").attr("disabled", true);
+								}else{
+									$("#next_page").attr("disabled", false);
+								}
+							}else{
+								$("#next_page").attr("disabled", false);
+							}
+						}
+					});
+				});
+				//下一页
+				$("#next_page").click(function(){
+					var page=$('#current_page').text();
+					if(!isNull(page)){
+						var ps=page.split('/');
+						ps[0]=parseInt(ps[0])+1;
+						page=ps[0]+'/'+ps[1];
+					}
+					var pageNum={
+						page:page,
+					}
+					postAjax("../"+model+"/table"+model,pageNum,function(data){
+						if(data!=null){
+							$('#object_table').html(data);
+							$('#current_page').text(page);
+							update_control();
+							if(page=='1/10'){
+								$("#last_page").attr("disabled", true);
+							}
+							if(!isNull($('#null_content').text())){
+								$("#last_page").attr("disabled", false);
+								$("#next_page").attr("disabled", true);
+							}else{
+								$("#last_page").attr("disabled", false);
+							}
+						}
+					});
+				});
+				$('#Work').trigger('click');
+			});
+
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,44 @@
+<input type="hidden" id="model_control" value="${(result.model)!''}">
+<tr class="courtbcdoc-conttr mgr10 mgl10">
+    <th style="width: 3%;"><input type="checkbox" name="" class="allcheck" /></th>
+    <th style="width: 15%;">操作</th>
+    <th style="width: 10%;">序号</th>
+    <th style="width: 15%;">姓名</th>
+    <th style="width: 10%;">性别</th>
+    <th style="width: 20%;">所属支部</th>
+    <th style="width: 15%;">职务</th>
+    <th style="width: 20%;">党员性质</th>
+    <th style="width: 25%;">更新时间</th>
+</tr>
+<#if result.listObject??>
+    <#list result.listObject as Object>
+        <tr id="${Object.id}" class="obj_table_class courtbcdoc-conttr mgr10 mgl10">
+            <td class="textalignc"><input type="checkbox" name="courtbcdocinp" class="unitcheck" /></td>
+            <td class="textalignc">
+                <a href="#" class="fgly_modify" id="${result.model}">修改</a>
+                <a href="#" class="look_status">删除</a>
+            </td>
+            <td class="textalignc overell pgl10 pgr10"></td>
+            <td class="textalignc overell pgl10 pgr10">${Object.name}</td>
+            <td class="textalignc overell pgl10 pgr10">
+                <#if (Object.sex)=='1'>
+                    男
+                </#if>
+                <#if (Object.sex)=='2'>
+                    女
+                </#if>
+            </td>
+            <td class="textalignc overell pgl10 pgr10">${Object.belong}</td>
+            <td class="textalignc overell pgl10 pgr10">${Object.duties}</td>
+            <td class="textalignc overell pgl10 pgr10">${Object.property}</td>
+            <td class="textalignc overell pgl10 pgr10">${Object.updateDate}</td>
+        </tr>
+    </#list>
+</#if>
+<#if !result.listObject??>
+    <tr class="courtbcdoc-conttr mgr10 mgl10">
+        <td class="textalignc" id="null_content" colspan="6" style="background: #FFF8E3;">
+            ${(result.warn)!""}
+        </td>
+    </tr>
+</#if>

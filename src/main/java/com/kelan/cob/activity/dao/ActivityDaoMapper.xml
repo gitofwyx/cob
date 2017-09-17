@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.activity.dao.ActivityDao">
+    <sql id="columns">id,title,coverPic,content,remark,pubDate,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <!--添加活动信息 -->
+    <insert id="addActivity" parameterType="com.kelan.cob.activity.entity.Activity">
+        insert into cob_activity(<include refid="columns"></include>) values(
+        #{id},#{title},#{coverPic},#{content},#{remark},#{pubDate},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
+    <!--根据id获取活动信息 -->
+    <select id="getActivity" parameterType="string" resultType="com.kelan.cob.activity.entity.Activity">
+        select
+        <include refid="columns"></include>
+        from cob_activity
+        where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <!--获取活动分页 -->
+    <select id="listActivity" parameterType="string" resultType="com.kelan.cob.activity.entity.Activity">
+        select
+        <include refid="columns"></include>
+        from cob_activity where deleteFlag='0' ORDER BY pubDate  desc limit #{0},#{1};
+    </select>
+
+    <!--修改活动信息 -->
+    <update id="updateActivity" parameterType="com.kelan.cob.activity.entity.Activity">
+        update cob_activity set title=#{title},coverPic=#{coverPic},content=#{content},
+        remark=#{remark},pubDate=#{pubDate},updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--批量修改（批量逻辑删除） -->
+    <!--以下的批量方法只能删除数据表的一样数据-->
+    <update id="deleteListActivity" parameterType="java.util.List" >
+        UPDATE cob_activity SET deleteFlag ='1' WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量删除 -->
+    <delete id="deleteActivity" parameterType="java.util.List">
+        DELETE FROM cob_activity WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

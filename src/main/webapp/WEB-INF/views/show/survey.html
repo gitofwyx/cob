@@ -1,0 +1,17 @@
+<!--头部-->
+<div class="head dyjb">
+    <span>书记办公室</span>
+    <a href="#" class="ahover">更多&gt;&gt;</a>
+</div>
+<!--内容-->
+<div class="content">
+    <#if result.listObject??>
+        <#list result.listObject as survey>
+            <div class="dyjs pgr5">
+                <span class="icon icon-caret-right colft3C fs18"></span>
+                <a href="/cob_video" class="colft00 overell ahover">${survey.title}</a>
+                <img src="/img/new.png" class="homefourth-new" />
+            </div>
+        </#list>
+    </#if>
+</div>

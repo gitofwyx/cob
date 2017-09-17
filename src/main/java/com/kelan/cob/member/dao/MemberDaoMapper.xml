@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.member.dao.MemberDao">
+    <sql id="columns">id,name,coverPic,sex,nation,age,address,belong,duties,property,attendDate,contactNumber,education,
+      createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <!--添加活动信息 -->
+    <insert id="addMember" parameterType="com.kelan.cob.member.entity.Member">
+        insert into cob_member(<include refid="columns"></include>) values(
+        #{id},#{name},#{coverPic},#{sex},#{nation},#{age},#{address},#{belong},#{duties},#{property},#{attendDate},#{contactNumber},
+        #{education},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
+    <!--根据id获取活动信息 -->
+    <select id="getMember" parameterType="string" resultType="com.kelan.cob.member.entity.Member">
+        select
+        <include refid="columns"></include>
+        from cob_member
+        where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <!--获取活动分页 -->
+    <select id="listMember" parameterType="string" resultType="com.kelan.cob.member.entity.Member">
+        select
+        <include refid="columns"></include>
+        from cob_member where deleteFlag='0' ORDER BY createDate  desc limit #{0},#{1};
+    </select>
+
+    <!--修改活动信息 -->
+    <update id="updateMember" parameterType="com.kelan.cob.member.entity.Member">
+        update cob_member set name=#{name},coverPic=#{coverPic},sex=#{sex},nation=#{nation},age=#{age},address=#{address},belong=#{belong},
+        duties=#{duties},property=#{property},attendDate=#{attendDate},contactNumber=#{contactNumber},education=#{education},
+        updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--批量修改（批量逻辑删除） -->
+    <!--以下的批量方法只能删除数据表的一样数据-->
+    <update id="deleteListMember" parameterType="java.util.List" >
+        UPDATE cob_member SET deleteFlag ='1' WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量删除 -->
+    <delete id="deleteMember" parameterType="java.util.List">
+        DELETE FROM cob_member WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

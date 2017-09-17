@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cob:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="cob.war">
+      <element id="artifact" artifact-name="cob:war exploded" />
+    </root>
+  </artifact>
+</component>

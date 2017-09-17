@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kelan.cob.system.dao.Side_menuDao">
+      <sql id="columns">id,node_name,order_number,model,list_url,add_url,update_url,delete_url,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+       
+      <insert id="addSide_menu" parameterType="com.kelan.cob.system.entity.Side_menu">
+           insert into cob_side_menu(<include refid="columns"></include>) values(
+           #{id},#{node_name},#{order_number},#{model},#{list_url},#{add_url},#{update_url},#{delete_url},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+      </insert>
+
+      <!--获取活动分页 -->
+      <select id="listSide_menu" parameterType="string" resultType="com.kelan.cob.system.entity.Side_menu">
+          select
+          <include refid="columns"></include>
+          from cob_side_menu where model=#{model} AND deleteFlag='0' ORDER BY order_number;
+      </select>
+      
+
+</mapper>
